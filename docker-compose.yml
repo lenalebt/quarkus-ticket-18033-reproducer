@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=code-with-quarkus
+      - POSTGRES_PASSWORD=code-with-quarkus
+      - POSTGRES_DB=code-with-quarkus
+    command: ["-c", "fsync=off"]
+  event-broker:
+    image: dvob/http-server
+    ports:
+      - "8001:8080"
+    command: [ "-hec" ]
+  jaeger:
+    image: jaegertracing/all-in-one
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: ":9411"
+    ports:
+      - "8002:16686"
+      - "14268:14268"
+volumes:
+  postgresql:

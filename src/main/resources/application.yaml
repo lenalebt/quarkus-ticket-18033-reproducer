@@ -1,0 +1,21 @@
+quarkus:
+  datasource:
+    db-kind: "postgresql"
+    username: "code-with-quarkus"
+    password: "code-with-quarkus"  #override in deployment
+    jdbc:
+      url: "jdbc:tracing:postgresql://localhost:5432/code-with-quarkus"
+      driver: "io.opentracing.contrib.jdbc.TracingDriver"
+  flyway:
+    clean-at-start: true
+    migrate-at-start: true
+    validate-on-migrate: true
+  log:
+    level: INFO
+    console:
+      color: true
+  jaeger:
+    endpoint: "http://localhost:14268/api/traces"
+    sampler-type: "const"
+    sampler-param: 1
+
