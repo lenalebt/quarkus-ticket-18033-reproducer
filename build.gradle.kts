@@ -1,6 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.4.32"
-    kotlin("plugin.allopen") version "1.4.32"
+    kotlin("jvm") version "1.5.20"
+    kotlin("plugin.allopen") version "1.5.20"
+    kotlin("kapt") version "1.5.20"
     id("io.quarkus")
 }
 
@@ -53,9 +54,4 @@ allOpen {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     kotlinOptions.javaParameters = true
-}
-
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-    options.compilerArgs.add("-parameters")
 }
